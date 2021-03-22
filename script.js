@@ -42,7 +42,7 @@ function handleClick() {
                 map.setZoom(14);
                 new google.maps.Marker({
                     position: pos,
-                    icon: "blue-marker.png",
+                    icon: "images/blue-marker.png",
                     map,
                     title: "You are here",
                 });
