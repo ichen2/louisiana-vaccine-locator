@@ -7,7 +7,7 @@ let map, infoWindow;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
+    center: { lat: 30.4515, lng: 91.1871 },
     zoom: 6,
   });
   infoWindow = new google.maps.InfoWindow();
@@ -28,7 +28,7 @@ function initMap() {
           infoWindow.setContent("Location found.");
           infoWindow.open(map);
           map.setCenter(pos);
-          map.setZoom(8);
+          map.setZoom(14);
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
