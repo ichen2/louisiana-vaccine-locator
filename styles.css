@@ -9,6 +9,7 @@
     background-color: darkslateblue;
     color: white;
     border: none;
+    cursor:pointer;
 }
 #map {
     background-color: grey;
