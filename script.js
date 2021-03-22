@@ -40,6 +40,11 @@ function handleClick() {
                 };
                 map.setCenter(pos);
                 map.setZoom(14);
+                new google.maps.Marker({
+                    position: myLatLng,
+                    map,
+                    title: "You are here",
+                });
             },
             () => {
                 handleLocationError(true, infoWindow, map.getCenter());
