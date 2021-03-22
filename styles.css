@@ -1,17 +1,18 @@
 .container {
-    width: 100%;
+    margin: 16px;
     text-align: center;
 }
 #btn-find-me {
-    width: 200px;
-    height: 100px;
+    width: 160px;
+    height: 80px;
     font-size: 1.6em;
     background-color: darkslateblue;
     color: white;
     border: none;
 }
 #map {
-    margin: 16px;
-    width: 80%;
-    height: 80%;
+    background-color: grey;
+    margin: 16px auto;
+    width: 80vw;
+    height: 80vh;
 }
