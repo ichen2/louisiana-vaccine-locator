@@ -41,7 +41,7 @@ function handleClick() {
                 map.setCenter(pos);
                 map.setZoom(14);
                 new google.maps.Marker({
-                    position: myLatLng,
+                    position: pos,
                     map,
                     title: "You are here",
                 });
