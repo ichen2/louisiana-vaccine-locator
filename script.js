@@ -5,6 +5,8 @@
 
 let map, infoWindow;
 
+let locations = [{name: "CVS", address: "3200 Highland Road, Baton Rouge, LA"}];
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 30.45774536395304, lng: -91.18759503879424 },
@@ -17,6 +19,8 @@ function initMap() {
     fullscreenControl: false,
   });
   infoWindow = new google.maps.InfoWindow();
+  const geocoder = new google.maps.Geocoder();
+  findAddress(geocoder, map);
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -28,7 +32,20 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   );
   infoWindow.open(map);
 }
-
+function findAddress(geocoder, resultsMap) {
+  const address = locations[0].address;
+  geocoder.geocode({ address: address }, (results, status) => {
+    if (status === "OK") {
+      resultsMap.setCenter(results[0].geometry.location);
+      new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location,
+      });
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+}
 function findUser() {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
