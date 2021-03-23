@@ -3,14 +3,18 @@
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
 
-let map, infoWindow;
+let map, infoWindow, userCoords;
 
-let locations = [
-  {name: "CVS", address: {lat: 30.41907143662004, lng: -91.17724322318438}},
-  {name: "Church Point Community Pharmacy", address: {lat: 30.452070651605258, lng: -91.18299071574268}},
+const locations = [
+  {name: "CVS", coords: {lat: 30.41907143662004, lng: -91.17724322318438}},
+  {name: "Church Point Community Pharmacy", coords: {lat: 30.452070651605258, lng: -91.18299071574268}},
 ];
 
 let markers = [];
+
+function getDistance(coords1, coords2) {
+  return Math.sqrt(Math.abs(coords1.lat - coords2.lat) ** 2 + Math.abs(coords1.lng - coords2.lng) ** 2);
+}
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -37,7 +41,7 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow();
   locations.forEach(location => {
     let marker = new google.maps.Marker({
-      position: location.address,
+      position: location.coords,
       map,
       title: location.name,
     });
@@ -60,6 +64,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   );
   infoWindow.open(map);
 }
+
 function findUser() {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -69,6 +74,7 @@ function findUser() {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                 };
+                userCoords = pos;
                 map.setCenter(pos);
                 map.setZoom(13);
                 new google.maps.Marker({
@@ -87,4 +93,8 @@ function findUser() {
       handleLocationError(false, infoWindow, map.getCenter());
     }
   }
+
   findUser();
+  console.log(userCoords);
+  console.log(getDistance(userCoords, locations[0].coords))
+  console.log(getDistance(userCoords, locations[1].coords))
