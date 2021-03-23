@@ -37,7 +37,7 @@ function initMap() {
   locations.forEach(location => {
     let marker = new google.maps.Marker({
       position: location.address,
-      clickable: true,
+      cursor: 'pointer',
       map,
       title: location.name,
     });
@@ -73,7 +73,6 @@ function findUser() {
                 new google.maps.Marker({
                     position: pos,
                     icon: 'images/person.png',
-                    clickable: false,
                     map,
                     title: "You are here",
                 });
