@@ -10,6 +10,8 @@ let locations = [
   {name: "Church Point Community Pharmacy", address: {lat: 30.452070651605258, lng: -91.18299071574268}},
 ];
 
+let markers = [];
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 30.45774536395304, lng: -91.18759503879424 },
@@ -44,7 +46,8 @@ function initMap() {
       map.setCenter(marker.getPosition());
       infoWindow.open(map, marker);
       infoWindow.setContent(location.name);
-    });;
+    });
+    markers.push(marker);
   });
 }
 
