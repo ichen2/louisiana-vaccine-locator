@@ -37,7 +37,6 @@ function initMap() {
   locations.forEach(location => {
     let marker = new google.maps.Marker({
       position: location.address,
-      cursor: 'pointer',
       map,
       title: location.name,
     });
