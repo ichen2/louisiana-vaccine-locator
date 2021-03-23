@@ -10,8 +10,6 @@ const locations = [
   {name: "Church Point Community Pharmacy", coords: {lat: 30.452070651605258, lng: -91.18299071574268}},
 ];
 
-let markers = [];
-
 function getDistance(coords1, coords2) {
   return Math.sqrt(Math.abs(coords1.lat - coords2.lat) ** 2 + Math.abs(coords1.lng - coords2.lng) ** 2);
 }
@@ -51,10 +49,25 @@ function initMap() {
       infoWindow.open(map, marker);
       infoWindow.setContent(location.name);
     });
-    markers.push(marker);
+    location.marker = marker;
   });
 }
 
+function sortLocations() {
+  locations.sort((location1, location2) => {
+    let distance1 = getDistance(userCoords, location1.coords);
+    let distance2 = getDistance(userCoords, location2.coords);
+    if(distance1 < distance2) {
+      return -1;
+    }
+    else if(distance1 > distance2) {
+      return 1;
+    }
+    else {
+      return 0;
+    }
+  });
+}
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(
@@ -94,7 +107,4 @@ function findUser() {
     }
   }
 
-  findUser();
-  console.log(userCoords);
-  console.log(getDistance(userCoords, locations[0].coords))
-  console.log(getDistance(userCoords, locations[1].coords))
+findUser();
