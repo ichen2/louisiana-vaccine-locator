@@ -21,6 +21,7 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow();
   new google.maps.Marker({
     position: locations[0].address,
+    icon: 'images/syringe.png',
     map,
     title: locations[0].name,
   });
@@ -48,6 +49,7 @@ function findUser() {
                 map.setZoom(14);
                 new google.maps.Marker({
                     position: pos,
+                    icon: 'images/person.png',
                     map,
                     title: "You are here",
                 });
