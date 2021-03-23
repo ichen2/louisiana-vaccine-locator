@@ -21,7 +21,6 @@ function initMap() {
     rotateControl: true, 
     fullscreenControl: false,
   });
-  // hide point of interest and transit icons
   map.setOptions({styles:  [
     {
       featureType: "poi.business",
@@ -43,7 +42,7 @@ function initMap() {
     marker.addListener("click", () => {
       map.setZoom(13);
       map.setCenter(marker.getPosition());
-      infoWindow.setPosition(marker.getPosition());
+      infoWindow.open(map, marker);
       infoWindow.setContent(location.name);
     });;
   });
