@@ -35,17 +35,30 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   );
   infoWindow.open(map);
 }
-function findAddress(geocoder, resultsMap) {
-  const address = locations[0].address;
-  geocoder.geocode({ address: address }, (results, status) => {
-    if (status === "OK") {
-      new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location,
-      });
+function findUser() {
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
+                map.setCenter(pos);
+                map.setZoom(14);
+                new google.maps.Marker({
+                    position: pos,
+                    map,
+                    title: "You are here",
+                });
+            },
+            () => {
+                handleLocationError(true, infoWindow, map.getCenter());
+            }
+        );
     } else {
-      alert("Geocode was not successful for the following reason: " + status);
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
     }
-  });
-}    
-findUser();
+  }
+  findUser();
