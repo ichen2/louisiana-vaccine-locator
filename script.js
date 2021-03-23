@@ -5,7 +5,10 @@
 
 let map, infoWindow;
 
-let locations = [{name: "CVS", address: {lat: 30.41907143662004, lng: -91.17724322318438}}];
+let locations = [
+  {name: "CVS", address: {lat: 30.41907143662004, lng: -91.17724322318438}},
+  {name: "Church Point Community Pharmacy", address: {lat: 30.452070651605258, lng: -91.18299071574268}},
+];
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -31,11 +34,13 @@ function initMap() {
     },
   ]})
   infoWindow = new google.maps.InfoWindow();
-  new google.maps.Marker({
-    position: locations[0].address,
-    icon: 'images/syringe.png',
-    map,
-    title: locations[0].name,
+  locations.forEach(location => {
+    new google.maps.Marker({
+      position: location.address,
+      icon: 'images/syringe.png',
+      map,
+      title: location.name,
+    });
   });
 }
 
