@@ -41,7 +41,7 @@ function initMap() {
       title: location.name,
     });
     marker.addListener("click", () => {
-      map.setZoom(8);
+      map.setZoom(13);
       map.setCenter(marker.getPosition());
     });;
   });
@@ -66,7 +66,7 @@ function findUser() {
                     lng: position.coords.longitude,
                 };
                 map.setCenter(pos);
-                map.setZoom(14);
+                map.setZoom(13);
                 new google.maps.Marker({
                     position: pos,
                     icon: 'images/person.png',
