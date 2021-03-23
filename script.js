@@ -18,6 +18,18 @@ function initMap() {
     rotateControl: true, 
     fullscreenControl: false,
   });
+  // hide point of interest and transit icons
+  map.setOptions({styles:  [
+    {
+      featureType: "poi.business",
+      stylers: [{ visibility: "off" }],
+    },
+    {
+      featureType: "transit",
+      elementType: "labels.icon",
+      stylers: [{ visibility: "off" }],
+    },
+  ]})
   infoWindow = new google.maps.InfoWindow();
   new google.maps.Marker({
     position: locations[0].address,
