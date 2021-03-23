@@ -35,12 +35,15 @@ function initMap() {
   ]})
   infoWindow = new google.maps.InfoWindow();
   locations.forEach(location => {
-    new google.maps.Marker({
+    let marker = new google.maps.Marker({
       position: location.address,
-      icon: 'images/syringe.png',
       map,
       title: location.name,
     });
+    marker.addListener("click", () => {
+      map.setZoom(8);
+      map.setCenter(marker.getPosition());
+    });;
   });
 }
 
