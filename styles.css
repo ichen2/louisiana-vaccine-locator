@@ -2,12 +2,12 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 #container {
-    margin: 16px;
+    padding: 16px;
     text-align: center;
 }
 #map {
     background-color: grey;
-    margin: 16px auto;
+    padding: 16px auto;
 }
 html, body, #container, #map {
     width: 100%;
