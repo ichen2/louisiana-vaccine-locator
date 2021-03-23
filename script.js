@@ -55,3 +55,4 @@ function handleClick() {
       handleLocationError(false, infoWindow, map.getCenter());
     }
   }
+  handleClick();
