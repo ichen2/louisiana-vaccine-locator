@@ -42,8 +42,6 @@ function handleClick() {
                 map.setZoom(14);
                 new google.maps.Marker({
                     position: pos,
-                    icon: "images/blue-marker.png",
-                    scaledSize: new google.maps.Size(44, 71),
                     map,
                     title: "You are here",
                 });
