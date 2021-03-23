@@ -9,7 +9,12 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 30.45774536395304, lng: -91.18759503879424 },
     zoom: 10,
-    disableDefaultUI: true,
+    zoomControl: true,
+    mapTypeControl: false, 
+    scaleControl: false, 
+    streetViewControl: false, 
+    rotateControl: true, 
+    fullscreenControl: false,
   });
   infoWindow = new google.maps.InfoWindow();
 /*   const locationButton = document.createElement("button");
