@@ -21,11 +21,13 @@ class Location {
 
 const addressToCoords = {
   "731 S Main Street": {lat: 30.452070651605258, lng: -91.18299071574268},
+  "300 N Main Street": {lat: 30.407485290016126, lng: -92.21836461093541},
   "3200 Highland Road": {lat: 30.41907143662004, lng: -91.17724322318438},
 }
 
 const locations = [
-  new Location("Acadia", "Church Point Community Pharmacy", "731 S Main Street", "Church Point", "http://www.communitypharmacyrx.com/"),
+  new Location("Acadia", "Church Point Community Pharmacy", "731 S Main Street", "Church Point", "http://www.communitypharmacyrx.com/", "3376841911"),
+  new Location("Acadia", "Church Point Pharmacy", "300 N Main Street", "Church Point", "https://www.facebook.com/ChurchPointPharmacy/", "3376845475"),
   new Location("East Baton Rouge", "CVS", "3200 Highland Road", "Baton Rouge", "https://www.cvs.com/immunizations/covid-19-vaccine"),
 ];
 

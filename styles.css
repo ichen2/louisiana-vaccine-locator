@@ -24,8 +24,8 @@ body {
     z-index: 1000;
 }
 .sidebar-item {
-    padding: 10px;
-    width: 280px;
+    padding: 8px;
+    background-image: linear-gradient(white, #F1F1F1);
 }
 .sidebar-item > * {
     word-wrap: break-word;
