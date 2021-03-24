@@ -66,16 +66,16 @@ function initMap() {
       map.setZoom(13);
       map.setCenter(marker.getPosition());
       infoWindow.open(map, marker);
-      infoWindow.setContent(
-        `<div id="content">
-          <h2>${location.name}</h3>
-          <h4>${location.parish} Parish</h4>
-          <h4>${location.address}, ${location.city} LA</h4>`
-          + !!location.website ? `<a href="${location.website}">Website</a>` : '' 
-          + !!location.phone ? `<a href="tel:${location.phone}">${location.phone}</a>` : ''
-          + location.younger ? '16-17 year olds eligible' : ''
-        + `</div>`
-      );
+      const contentString = 
+      `<div id="content">
+        <h2>${location.name}</h3>
+        <h4>${location.parish} Parish</h4>
+        <h4>${location.address}, ${location.city} LA</h4>`
+        + !!location.website ? `<a href="${location.website}">Website</a>` : '' 
+        + !!location.phone ? `<a href="tel:${location.phone}">${location.phone}</a>` : ''
+        + location.younger ? '16-17 year olds eligible' : ''
+    + `</div>`;
+      infoWindow.setContent(contentString);
     });
     location.marker = marker;
   });
