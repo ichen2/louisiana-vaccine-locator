@@ -67,7 +67,7 @@ function initMap() {
       map.setCenter(marker.getPosition());
       infoWindow.open(map, marker);
       const contentString = 
-      `<div class="info-window-content">\n<h2>${location.name}</h3>\n<h4>${location.parish} Parish</h4>\n<h4>${location.address}, ${location.city} LA</h4>`
+      `<div class="info-window-content">\n<h2>${location.name}</h2>\n<h4>${location.parish} Parish</h4>\n<h4>${location.address}, ${location.city} LA</h4>`
       + !!location.website ? `<a href="${location.website}">Website</a>` : '' 
       + !!location.phone ? `<a href="tel:${location.phone}">${location.phone}</a>` : ''
       + location.younger ? '16-17 year olds eligible' : ''
