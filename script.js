@@ -117,6 +117,32 @@ function findUser() {
       }
   });
 }
+function fillSidebar() {
+  locations.forEach((location) => fillSidebarItem(location));
+}
+function fillSidebarItem(location) {
+  // get template
+  let sidebar = document.querySelector('#sidebar');
+  let template = document.querySelector('#sidebar-item-template');
+  let clone = template.content.cloneNode(true);
+  // get elements
+  let name = clone.querySelector('.sidebar-item-name');
+  let parish = clone.querySelector('.sidebar-item-parish');
+  let address = clone.querySelector('.sidebar-item-address');
+  let website = clone.querySelector('.sidebar-item-website');
+  let phone = clone.querySelector('.sidebar-item-phone');
+  // fill elements
+  name.textContent = location.name;
+  parish.textContent = location.parish;
+  address.textContent = location.address;
+  if(location.website) {
+    website.textContent = location.website;
+  }
+  if(location.phone) {
+    phone.textContent = location.phone;
+  }
+  sidebar.appendChild(clone);
+}
 
 findUser()
   .then((position) => {
@@ -134,6 +160,7 @@ findUser()
       title: "You are here",
     });
     sortLocations(pos);
+    fillSidebar();
   })
   .catch(() => {
     console.log("Failure");

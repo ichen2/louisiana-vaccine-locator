@@ -16,13 +16,19 @@ body {
     background-color: lightgray;
 }
 #sidebar {
-    display: none;
     overflow: auto;
     position: absolute;
     width: 300px;
     height: 80%;
     background-color: #FCFCFC;
     z-index: 1000;
+}
+.sidebar-item {
+    padding: 10px;
+    width: 280px;
+}
+.sidebar-item > * {
+    word-wrap: break-word;
 }
 html, body, #container {
     width: 100%;
