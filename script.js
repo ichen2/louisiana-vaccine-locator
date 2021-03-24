@@ -79,32 +79,39 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 function findUser() {
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                };
-                userCoords = pos;
-                map.setCenter(pos);
-                map.setZoom(13);
-                new google.maps.Marker({
-                    position: pos,
-                    icon: 'images/person.png',
-                    map,
-                    title: "You are here",
-                });
-            },
-            () => {
-                handleLocationError(true, infoWindow, map.getCenter());
-            }
-        );
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
-  }
+  return new Promise((resolve, reject) => {
+      // Try HTML5 geolocation.
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+              (position) => {
+                  const pos = {
+                      lat: position.coords.latitude,
+                      lng: position.coords.longitude,
+                  };
+                  userCoords = pos;
+                  map.setCenter(pos);
+                  map.setZoom(13);
+                  new google.maps.Marker({
+                      position: pos,
+                      icon: 'images/person.png',
+                      map,
+                      title: "You are here",
+                  });
+                  resolve();
+              },
+              () => {
+                  reject();
+                  handleLocationError(true, infoWindow, map.getCenter());
+              }
+          );
+      } else {
+        reject();
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+      }
+  });
+}
 
-findUser();
+findUser()
+  .then(() => console.log("Success"))
+  .catch(() => console.log("Failure"));
