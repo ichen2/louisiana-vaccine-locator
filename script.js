@@ -84,13 +84,15 @@ function findUser() {
       if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(resolve, reject);
       } else {
+        console.log("?");
         reject();
       }
   });
 }
 
 findUser()
-  .then(() => {
+  .then((position) => {
+    console.log("Success!");
     const pos = {
       lat: position.coords.latitude,
       lng: position.coords.longitude,
@@ -106,5 +108,6 @@ findUser()
     });
   })
   .catch(() => {
+    console.log("Failure");
     handleLocationError(true, infoWindow, map.getCenter());
   });
