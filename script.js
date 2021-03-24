@@ -53,7 +53,7 @@ function initMap() {
   });
 }
 
-function sortLocations() {
+function sortLocations(userCoords) {
   locations.sort((location1, location2) => {
     let distance1 = getDistance(userCoords, location1.coords);
     let distance2 = getDistance(userCoords, location2.coords);
@@ -84,7 +84,6 @@ function findUser() {
       if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(resolve, reject);
       } else {
-        console.log("?");
         reject();
       }
   });
@@ -97,7 +96,6 @@ findUser()
       lat: position.coords.latitude,
       lng: position.coords.longitude,
     };
-    userCoords = pos;
     map.setCenter(pos);
     map.setZoom(13);
     new google.maps.Marker({
@@ -106,6 +104,7 @@ findUser()
       map,
       title: "You are here",
     });
+    sortLocations(pos);
   })
   .catch(() => {
     console.log("Failure");
