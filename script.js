@@ -82,36 +82,29 @@ function findUser() {
   return new Promise((resolve, reject) => {
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-              (position) => {
-                  const pos = {
-                      lat: position.coords.latitude,
-                      lng: position.coords.longitude,
-                  };
-                  userCoords = pos;
-                  map.setCenter(pos);
-                  map.setZoom(13);
-                  new google.maps.Marker({
-                      position: pos,
-                      icon: 'images/person.png',
-                      map,
-                      title: "You are here",
-                  });
-                  resolve();
-              },
-              () => {
-                  reject();
-                  handleLocationError(true, infoWindow, map.getCenter());
-              }
-          );
+          navigator.geolocation.getCurrentPosition(resolve, reject);
       } else {
         reject();
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
       }
   });
 }
 
 findUser()
-  .then(() => console.log("Success"))
-  .catch(() => console.log("Failure"));
+  .then(() => {
+    const pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    };
+    userCoords = pos;
+    map.setCenter(pos);
+    map.setZoom(13);
+    new google.maps.Marker({
+      position: pos,
+      icon: 'images/person.png',
+      map,
+      title: "You are here",
+    });
+  })
+  .catch(() => {
+    handleLocationError(true, infoWindow, map.getCenter());
+  });
