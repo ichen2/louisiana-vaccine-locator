@@ -5,9 +5,28 @@
 
 let map, infoWindow, userCoords;
 
+class Location {
+  // website and phone are optional
+  constructor(parish, name, address, city, website, phone, asterik) {
+    this.parish = parish;
+    this.name = name;
+    this.address = address;
+    this.coords = addressToCoords[address];
+    this.city = city;
+    this.website = website;
+    this.phone = phone;
+    this.younger = !!asterik;
+  }
+}
+
+const addressToCoords = {
+  "731 S Main Street": {lat: 30.452070651605258, lng: -91.18299071574268},
+  "3200 Highland Road": {lat: 30.41907143662004, lng: -91.17724322318438},
+}
+
 const locations = [
-  {name: "CVS", coords: {lat: 30.41907143662004, lng: -91.17724322318438}},
-  {name: "Church Point Community Pharmacy", coords: {lat: 30.452070651605258, lng: -91.18299071574268}},
+  new Location("Acadia", "Church Point Community Pharmacy", "731 S Main Street", "Church Point", "http://www.communitypharmacyrx.com/"),
+  new Location("East Baton Rouge", "CVS", "3200 Highland Road", "Baton Rouge", "https://www.cvs.com/immunizations/covid-19-vaccine"),
 ];
 
 function getDistance(coords1, coords2) {
@@ -47,7 +66,16 @@ function initMap() {
       map.setZoom(13);
       map.setCenter(marker.getPosition());
       infoWindow.open(map, marker);
-      infoWindow.setContent(location.name);
+      infoWindow.setContent(
+        `<div id="content">
+          <h2>${location.name}</h3>
+          <h4>${location.parish} Parish</h4>
+          <h4>${location.address}, ${location.city} LA</h4>`
+          + !!location.website ? `<a href="${location.website}">Website</a>` : '' 
+          + !!location.phone ? `<a href="tel:${location.phone}">${location.phone}</a>` : ''
+          + location.younger ? '16-17 year olds eligible' : ''
+        + `</div>`
+      );
     });
     location.marker = marker;
   });
