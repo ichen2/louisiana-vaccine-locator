@@ -58,6 +58,10 @@ function initMap() {
     },
   ]})
   infoWindow = new google.maps.InfoWindow();
+  let findMeButton = document.createElement("button");
+  findMeButton.innerHTML = "Find Me";
+  findMeButton.onclick = findUser().catch(() => handleLocationError(true, infoWindow, map.getCenter()))
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(findMeButton);
   locations.forEach(location => {
     let marker = new google.maps.Marker({
       position: location.coords,
@@ -148,7 +152,6 @@ function fillSidebarItem(location) {
 
 findUser()
   .then((position) => {
-    console.log("Success!");
     const pos = {
       lat: position.coords.latitude,
       lng: position.coords.longitude,
@@ -165,6 +168,5 @@ findUser()
     fillSidebar();
   })
   .catch(() => {
-    console.log("Failure");
     handleLocationError(true, infoWindow, map.getCenter());
   });
