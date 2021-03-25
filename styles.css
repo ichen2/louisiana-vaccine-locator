@@ -15,6 +15,11 @@ body {
     height: 80%;
     background-color: lightgray;
 }
+#find-me-button {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 24px;
+    padding: 4px;
+}
 #sidebar {
     overflow: auto;
     position: absolute;

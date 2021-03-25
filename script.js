@@ -57,11 +57,15 @@ function initMap() {
       stylers: [{ visibility: "off" }],
     },
   ]})
+
   infoWindow = new google.maps.InfoWindow();
+
   let findMeButton = document.createElement("button");
   findMeButton.innerHTML = "Find Me";
+  findMeButton.id = "find-me-button";
   findMeButton.onclick = centerOnUser;
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(findMeButton);
+
   locations.forEach(location => {
     let marker = new google.maps.Marker({
       position: location.coords,
@@ -125,7 +129,6 @@ function findUser() {
 }
 
 function centerOnUser() {
-  console.log("center on user");
   return new Promise((resolve, reject) => {
     findUser()
     .then((position) => {
