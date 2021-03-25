@@ -19,18 +19,22 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 24px;
     padding: 4px;
+    border: none;
+    background-color: white;
 }
 #sidebar {
     overflow: auto;
     position: absolute;
     width: 300px;
     height: 80%;
-    background-color: #FCFCFC;
+    background-color: #F1F1F1;
     z-index: 1000;
 }
 .sidebar-item {
-    padding: 8px;
-    background-image: linear-gradient(white, #F1F1F1);
+    margin: 12px;
+    padding: 12px;
+    background-color: white;
+    border-radius: 24px;
 }
 .sidebar-item > * {
     word-wrap: break-word;
