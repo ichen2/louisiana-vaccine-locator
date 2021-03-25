@@ -60,7 +60,7 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow();
   let findMeButton = document.createElement("button");
   findMeButton.innerHTML = "Find Me";
-  findMeButton.onclick = findUser().catch(() => handleLocationError(true, infoWindow, map.getCenter()))
+  findMeButton.onclick = centerOnUser().catch(() => handleLocationError(true, infoWindow, map.getCenter()))
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(findMeButton);
   locations.forEach(location => {
     let marker = new google.maps.Marker({
@@ -123,6 +123,23 @@ function findUser() {
       }
   });
 }
+
+function centerOnUser() {
+  return new Promise((resolve, reject) => {
+    findUser()
+    .then((position) => {
+      const pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      map.setCenter(pos);
+      map.setZoom(13);
+      resolve(pos);
+    })
+    .catch(reject);
+  });
+}
+
 function fillSidebar() {
   locations.forEach((location) => fillSidebarItem(location));
 }
@@ -150,14 +167,8 @@ function fillSidebarItem(location) {
   sidebar.appendChild(clone);
 }
 
-findUser()
-  .then((position) => {
-    const pos = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude,
-    };
-    map.setCenter(pos);
-    map.setZoom(13);
+centerOnUser()
+  .then((pos) => {
     new google.maps.Marker({
       position: pos,
       icon: 'images/person.png',
