@@ -125,6 +125,7 @@ function findUser() {
 }
 
 function centerOnUser() {
+  console.log("center on user");
   return new Promise((resolve, reject) => {
     findUser()
     .then((position) => {
