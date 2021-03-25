@@ -60,7 +60,7 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow();
   let findMeButton = document.createElement("button");
   findMeButton.innerHTML = "Find Me";
-  findMeButton.onclick = centerOnUser().catch(() => handleLocationError(true, infoWindow, map.getCenter()))
+  findMeButton.onclick = centerOnUser;
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(findMeButton);
   locations.forEach(location => {
     let marker = new google.maps.Marker({
