@@ -152,11 +152,11 @@ function fillSidebarItem(location, index) {
   parish.textContent = location.parish;
   address.textContent = location.address;
   if(location.website) {
-    website.setAttribute('src', location.website);
+    website.href = location.website;
     website.textContent = location.website;
   }
   if(location.phone) {
-    phone.getAttribute('src', 'tel:' + location.phone);
+    phone.href = 'tel:' + location.phone;
     phone.textContent = location.phone;
   }
   clone.children[0].id = "location " + index;
