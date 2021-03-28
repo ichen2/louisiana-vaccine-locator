@@ -149,7 +149,7 @@ function fillSidebarItem(location, index) {
   let phone = clone.querySelector('.sidebar-item-phone');
   // fill elements
   name.textContent = location.name;
-  parish.textContent = location.parish;
+  parish.textContent = location.parish + " Parish";
   address.textContent = location.address;
   if(location.website) {
     website.href = location.website;
@@ -172,7 +172,14 @@ function scrollToSidebarItem(location) {
     if(location.name === locations[i].name) {
       let sidebarItem =  document.getElementById('location ' + i);
       sidebarItem.classList.add('current-sidebar-item'); 
-      document.getElementById('sidebar').scrollTop = sidebarItem.offsetTop - 6;
+      if(window.innerWidth >= 800) {
+        console.log("big window");
+        document.getElementById('sidebar').scrollTop = sidebarItem.offsetTop - 6;
+      }
+      else {
+        console.log("small window");
+        document.getElementById('sidebar').scrollLeft = sidebarItem.offsetLeft - 2;
+      }
     }
   }
 }
