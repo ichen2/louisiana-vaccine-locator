@@ -164,7 +164,9 @@ function fillSidebarItem(location, index) {
 }
 
 function scrollToSidebarItem(location) {
-  document.getElementsByClassName('current-sidebar-item').classList.remove('current-sidebar-item');
+  if(prev = document.getElementByClassName('current-sidebar-item') !== undefined) {
+    prev.classList.remove('current-sidebar-item');
+  }
   for(let i = 0; i < locations.length; i++) {
     if(location.name === locations[i].name) {
       let sidebarItem =  document.getElementById('location ' + i);
@@ -189,11 +191,7 @@ centerOnUser()
     console.log("Error getting location");
     handleLocationError(true, infoWindow, map.getCenter());
   })
-  .then(() => {
+  .finally(() => {
     sortLocations(currentPos);
     fillSidebar();
   })
-  .catch((err) => {
-    console.log("Error filling sidebar: " + err);
-  });
-
