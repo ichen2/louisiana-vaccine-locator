@@ -35,13 +35,6 @@ function getDistance(coords1, coords2) {
   return Math.sqrt(Math.abs(coords1.lat - coords2.lat) ** 2 + Math.abs(coords1.lng - coords2.lng) ** 2);
 }
 
-/*jQuery.fn.scrollTo = function(elem, speed) { 
-  $(this).animate({
-      scrollTop:  $(this).scrollTop() - $(this).offset().top + $(elem).offset().top 
-  }, speed == undefined ? 1000 : speed); 
-  return this; 
-};*/
-
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 30.45774536395304, lng: -91.18759503879424 },
@@ -83,18 +76,6 @@ function initMap() {
       map.setZoom(13);
       map.setCenter(marker.getPosition());
       scrollToSidebarItem(location);
-      /*infoWindow.open(map, marker);
-      const contentString = 
-      '<div class="info-window-content">'
-      + `<h2>${location.name}</h2>`
-      + `<h4>${location.parish} Parish</h4>`
-      + `<h4>${location.address}, ${location.city} LA</h4>`
-      + (!!location.website ? `<a href="${location.website}">Website</a>` : '') 
-      + (!!location.phone ? `<a href="tel:${location.phone}">${location.phone}</a>` : '')
-      + (location.younger ? '16-17 year olds eligible' : '')
-      + '</div>';
-      console.log(contentString);
-      infoWindow.setContent(contentString);*/
     });
     location.marker = marker;
   });
@@ -171,9 +152,11 @@ function fillSidebarItem(location, index) {
   parish.textContent = location.parish;
   address.textContent = location.address;
   if(location.website) {
+    website.getAttribute('src') = location.website;
     website.textContent = location.website;
   }
   if(location.phone) {
+    phone.getAttribute('src') = 'tel:' + location.phone;
     phone.textContent = location.phone;
   }
   clone.children[0].id = "location " + index;
@@ -183,7 +166,9 @@ function fillSidebarItem(location, index) {
 function scrollToSidebarItem(location) {
   for(let i = 0; i < locations.length; i++) {
     if(location.name === locations[i].name) {
-      document.getElementById('sidebar').scrollTop = document.getElementById('location ' + i).offsetTop;
+      let sidebarItem =  document.getElementById('location ' + i);
+      document.getElementById('sidebar').scrollTop =sidebarItem.offsetTop;
+      sidebarItem.focus();
     }
   }
 }

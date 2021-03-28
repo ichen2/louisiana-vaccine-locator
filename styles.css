@@ -39,6 +39,9 @@ body {
     background-color: white;
     border-radius: 24px;
 }
+.sidebar-item:focus {
+    background-color: lightgray;
+}
 .sidebar-item > * {
     word-wrap: break-word;
 }
