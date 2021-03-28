@@ -172,7 +172,7 @@ function scrollToSidebarItem(location) {
     if(location.name === locations[i].name) {
       let sidebarItem =  document.getElementById('location ' + i);
       sidebarItem.classList.add('current-sidebar-item'); 
-      document.getElementById('sidebar').scrollTop = sidebarItem.offsetTop;
+      document.getElementById('sidebar').scrollTop = sidebarItem.offsetTop - 6;
     }
   }
 }
