@@ -35,6 +35,13 @@ function getDistance(coords1, coords2) {
   return Math.sqrt(Math.abs(coords1.lat - coords2.lat) ** 2 + Math.abs(coords1.lng - coords2.lng) ** 2);
 }
 
+/*jQuery.fn.scrollTo = function(elem, speed) { 
+  $(this).animate({
+      scrollTop:  $(this).scrollTop() - $(this).offset().top + $(elem).offset().top 
+  }, speed == undefined ? 1000 : speed); 
+  return this; 
+};*/
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 30.45774536395304, lng: -91.18759503879424 },
@@ -75,7 +82,8 @@ function initMap() {
     marker.addListener("click", () => {
       map.setZoom(13);
       map.setCenter(marker.getPosition());
-      infoWindow.open(map, marker);
+      scrollToSidebarItem(location);
+      /*infoWindow.open(map, marker);
       const contentString = 
       '<div class="info-window-content">'
       + `<h2>${location.name}</h2>`
@@ -86,7 +94,7 @@ function initMap() {
       + (location.younger ? '16-17 year olds eligible' : '')
       + '</div>';
       console.log(contentString);
-      infoWindow.setContent(contentString);
+      infoWindow.setContent(contentString);*/
     });
     location.marker = marker;
   });
@@ -145,9 +153,9 @@ function centerOnUser() {
 }
 
 function fillSidebar() {
-  locations.forEach((location) => fillSidebarItem(location));
+  locations.forEach((location, index) => fillSidebarItem(location, index));
 }
-function fillSidebarItem(location) {
+function fillSidebarItem(location, index) {
   // get template
   let sidebar = document.querySelector('#sidebar');
   let template = document.querySelector('#sidebar-item-template');
@@ -168,7 +176,16 @@ function fillSidebarItem(location) {
   if(location.phone) {
     phone.textContent = location.phone;
   }
+  clone.children[0].id = "location " + index;
   sidebar.appendChild(clone);
+}
+
+function scrollToSidebarItem(location) {
+  for(let i = 0; i < locations.length; i++) {
+    if(location.name === locations[i].name) {
+      document.getElementById('sidebar').scrollTop = document.getElementById('location ' + i).offsetTop;
+    }
+  }
 }
 
 centerOnUser()
@@ -181,7 +198,9 @@ centerOnUser()
     });
     sortLocations(pos);
     fillSidebar();
+    document.getElementById('#sidebar').scrollTop = 200;
   })
   .catch(() => {
     handleLocationError(true, infoWindow, map.getCenter());
   });
+
