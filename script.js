@@ -164,11 +164,12 @@ function fillSidebarItem(location, index) {
 }
 
 function scrollToSidebarItem(location) {
+  document.getElementByClass('current-sidebar-item').classList.remove('current-sidebar-item');
   for(let i = 0; i < locations.length; i++) {
     if(location.name === locations[i].name) {
       let sidebarItem =  document.getElementById('location ' + i);
-      document.getElementById('sidebar').scrollTop =sidebarItem.offsetTop;
-      sidebarItem.focus();
+      sidebarItem.classList.add('current-sidebar-item'); 
+      document.getElementById('sidebar').scrollTop = sidebarItem.offsetTop;
     }
   }
 }
@@ -181,10 +182,16 @@ centerOnUser()
       map,
       title: "You are here",
     });
+  })
+  .catch(() => {
+    console.log("Error getting location");
+    handleLocationError(true, infoWindow, map.getCenter());
+  })
+  .then(() => {
     sortLocations(pos);
     fillSidebar();
   })
   .catch(() => {
-    handleLocationError(true, infoWindow, map.getCenter());
+    console.log("Error filling sidebar");
   });
 
