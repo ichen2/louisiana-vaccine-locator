@@ -198,7 +198,6 @@ centerOnUser()
     });
     sortLocations(pos);
     fillSidebar();
-    document.getElementById('#sidebar').scrollTop = 200;
   })
   .catch(() => {
     handleLocationError(true, infoWindow, map.getCenter());
