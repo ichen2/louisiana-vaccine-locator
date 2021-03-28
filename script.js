@@ -164,7 +164,8 @@ function fillSidebarItem(location, index) {
 }
 
 function scrollToSidebarItem(location) {
-  if(prev = document.getElementsByClassName('current-sidebar-item')[0] !== undefined) {
+  let prev = document.getElementsByClassName('current-sidebar-item')[0];
+  if(prev !== undefined) {
     prev.classList.remove('current-sidebar-item');
   }
   for(let i = 0; i < locations.length; i++) {
