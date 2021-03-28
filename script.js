@@ -113,9 +113,7 @@ function initMap() {
       title: location.name,
     });
     marker.addListener("click", () => {
-      map.setZoom(13);
-      map.setCenter(marker.getPosition());
-      scrollToSidebarItem(location);
+      selectLocation(location);
     });
     location.marker = marker;
   });
@@ -200,6 +198,7 @@ function fillSidebarItem(location, index) {
     phone.textContent = location.phone;
   }
   clone.children[0].id = "location " + index;
+  clone.children[0].addListener("click", selectLocation(location));
   sidebar.appendChild(clone);
 }
 
@@ -213,15 +212,23 @@ function scrollToSidebarItem(location) {
       let sidebarItem =  document.getElementById('location ' + i);
       sidebarItem.classList.add('current-sidebar-item'); 
       if(window.innerWidth >= 800) {
-        console.log("big window");
         document.getElementById('sidebar').scrollTop = sidebarItem.offsetTop - 6;
       }
       else {
-        console.log("small window");
         document.getElementById('sidebar').scrollLeft = sidebarItem.offsetLeft - 2;
       }
     }
   }
+}
+
+function panToLocation(location) {
+  map.setZoom(13);
+  map.panTo(location.coords);
+}
+
+function selectLocation(location) {
+  panToLocation(location);
+  scrollToSidebarItem(location);
 }
 
 let currentPos;
