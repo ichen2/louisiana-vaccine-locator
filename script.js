@@ -174,6 +174,7 @@ function scrollToSidebarItem(location) {
   }
 }
 
+let currentPos;
 centerOnUser()
   .then((pos) => {
     new google.maps.Marker({
@@ -182,14 +183,14 @@ centerOnUser()
       map,
       title: "You are here",
     });
-    return pos;
+    currentPos = pos;
   })
   .catch(() => {
     console.log("Error getting location");
     handleLocationError(true, infoWindow, map.getCenter());
   })
-  .then((pos) => {
-    sortLocations(pos);
+  .then(() => {
+    sortLocations(currentPos);
     fillSidebar();
   })
   .catch((err) => {
