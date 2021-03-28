@@ -191,7 +191,7 @@ centerOnUser()
     sortLocations(pos);
     fillSidebar();
   })
-  .catch(() => {
-    console.log("Error filling sidebar");
+  .catch((err) => {
+    console.log("Error filling sidebar: " + err);
   });
 
