@@ -182,12 +182,13 @@ centerOnUser()
       map,
       title: "You are here",
     });
+    return pos;
   })
   .catch(() => {
     console.log("Error getting location");
     handleLocationError(true, infoWindow, map.getCenter());
   })
-  .then(() => {
+  .then((pos) => {
     sortLocations(pos);
     fillSidebar();
   })
