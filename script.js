@@ -205,12 +205,14 @@ function fillSidebarItem(location, index) {
 }
 
 function scrollToSidebarItem(location) {
-  let prev = document.getElementsByClassName('current-sidebar-item')[0];
-  if(prev !== undefined) {
-    prev.classList.remove('current-sidebar-item');
+  let prev = document.getElementsByClassName('current-sidebar-item');
+  if(prev.length > 0) {
+    prev.forEach((elem) => {
+      elem.classList.remove('current-sidebar-item');
+    });
   }
   for(let i = 0; i < locations.length; i++) {
-    if(location.name === locations[i].name) {
+    if(location.address === locations[i].address) {
       let sidebarItem =  document.getElementById('location ' + i);
       sidebarItem.classList.add('current-sidebar-item'); 
       if(window.innerWidth >= 800) {
@@ -219,6 +221,7 @@ function scrollToSidebarItem(location) {
       else {
         document.getElementById('sidebar').scrollLeft = sidebarItem.offsetLeft - 2;
       }
+      break;
     }
   }
 }
