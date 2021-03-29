@@ -33,8 +33,12 @@ body {
     border-radius: 8px;
     background-color: white;
 }
-#find-me-button:focus {
+#find-me-button:hover {
     background-color: lightyellow;
+    color: black;
+}
+#find-me-button:focus {
+    background-color: #F0F0E1;
     color: black;
 }
 @media (min-width: 800px) {
