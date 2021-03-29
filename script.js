@@ -198,7 +198,9 @@ function fillSidebarItem(location, index) {
     phone.textContent = location.phone;
   }
   clone.children[0].id = "location " + index;
-  clone.children[0].addListener("click", selectLocation(location));
+  clone.children[0].addListener("click", () => { 
+    selectLocation(location)
+  });
   sidebar.appendChild(clone);
 }
 
