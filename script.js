@@ -292,6 +292,7 @@ function scrollToSidebarItem(location) {
       break;
     }
   }
+  location.marker.setIcon('images/current-marker.png');
 }
 
 function panToLocation(location) {
