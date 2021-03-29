@@ -44,7 +44,7 @@ body {
 @media (min-width: 800px) {
     #sidebar {
         overflow-y: auto;
-        width: 300px;
+        width: 250px;
         height: calc(100% - 58px);
     }
     .sidebar-item {
@@ -59,14 +59,16 @@ body {
         overflow-x: auto;
         width: 100%;
         height: auto;
+        bottom: 0;
     }
     .sidebar-item {
-        margin: 4px;
-        padding: 4px;
+        margin: 12px 6px;
+        padding: 12px;
         border-radius: 12px;
+        min-width: 300px;
     }
 }
-#sidebar {
+#sidebar {  
     position: absolute;
     background-color: lightgray;
     z-index: 1000;
