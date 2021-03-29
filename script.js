@@ -92,7 +92,7 @@ function centerOnUser() {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
-      map.setCenter(pos);
+      map.panTo(pos);
       map.setZoom(13);
       resolve(pos);
     })
@@ -124,7 +124,7 @@ function fillSidebarItem(location, index) {
   }
   if(location.phone) {
     phone.href = 'tel:' + location.phone;
-    phone.textContent = location.phone;
+    phone.textContent = formatPhoneNumber(location.phone);
   }
   clone.children[0].id = "location " + index;
   clone.children[0].addEventListener("click", () => { 
@@ -170,6 +170,17 @@ function selectLocation(location) {
   scrollToSidebarItem(location);
 }
 
+function formatPhoneNumber(number) {
+  if(number.length === 10) {
+    return `(${number.substring(0, 3)}) ${number.substring(3,6)}-${number.substring(6,10)}`;
+  }
+  else if(number.length === 11) {
+    return `${number.substring(0,1)} (${number.substring(1, 4)}) ${number.substring(4,7)}-${number.substring(7,11)}`;
+  }
+  else {
+    return 'invalid phone number';
+  }
+}
 let currentPos;
 centerOnUser()
   .then((pos) => {
