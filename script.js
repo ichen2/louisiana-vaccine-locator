@@ -112,7 +112,7 @@ function initMap() {
       map,
       title: location.name,
     });
-    marker.addEventListener("click", () => {
+    marker.addListener("click", () => {
       selectLocation(location);
     });
     location.marker = marker;
