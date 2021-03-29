@@ -112,7 +112,7 @@ function initMap() {
       map,
       title: location.name,
     });
-    marker.addListener("click", () => {
+    marker.addEventListener("click", () => {
       selectLocation(location);
     });
     location.marker = marker;
@@ -198,7 +198,7 @@ function fillSidebarItem(location, index) {
     phone.textContent = location.phone;
   }
   clone.children[0].id = "location " + index;
-  clone.children[0].addListener("click", () => { 
+  clone.children[0].addEventListener("click", () => { 
     selectLocation(location)
   });
   sidebar.appendChild(clone);
