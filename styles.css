@@ -35,9 +35,11 @@ body {
 }
 #find-me-button:hover {
     background-color: lightyellow;
+    color: black;
 }
 #find-me-button:focus {
     background-color: lightyellow;
+    color: black;
 }
 @media (min-width: 800px) {
     #sidebar {
