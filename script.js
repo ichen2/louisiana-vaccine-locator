@@ -196,12 +196,13 @@ function formatPhoneNumber(number) {
 let currentPos;
 centerOnUser()
   .then((pos) => {
-    new google.maps.Marker({
+    let marker = new google.maps.Marker({
       position: pos,
       icon: 'images/person.png',
       map,
       title: "You are here",
     });
+    marker.addListener("click", centerOnUser());
     currentPos = pos;
   })
   .catch(() => {
