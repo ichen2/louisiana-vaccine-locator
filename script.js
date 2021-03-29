@@ -46,9 +46,7 @@ function initMap() {
       map,
       title: location.name,
     });
-    marker.addListener("click", () => {
-      selectLocation(location);
-    });
+    marker.addListener("click", () => { selectLocation(location) });
     location.marker = marker;
   });
 }
@@ -202,7 +200,7 @@ centerOnUser()
       map,
       title: "You are here",
     });
-    marker.addListener("click", centerOnUser());
+    marker.addListener("click", () => { centerOnUser() });
     currentPos = pos;
   })
   .catch(() => {
