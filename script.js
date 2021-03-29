@@ -207,9 +207,9 @@ function fillSidebarItem(location, index) {
 function scrollToSidebarItem(location) {
   let prev = document.getElementsByClassName('current-sidebar-item');
   if(prev.length > 0) {
-    prev.forEach((elem) => {
+    for(elem of prev) {
       elem.classList.remove('current-sidebar-item');
-    });
+    }
   }
   for(let i = 0; i < locations.length; i++) {
     if(location.address === locations[i].address) {
