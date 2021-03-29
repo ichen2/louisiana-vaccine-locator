@@ -33,6 +33,12 @@ body {
     border-radius: 8px;
     background-color: white;
 }
+#find-me-button:hover {
+    background-color: lightyellow;
+}
+#find-me-button:focus {
+    background-color: lightyellow;
+}
 @media (min-width: 800px) {
     #sidebar {
         overflow-y: auto;
