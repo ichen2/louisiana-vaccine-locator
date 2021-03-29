@@ -114,6 +114,7 @@ function fillSidebarItem(location, index) {
   let address = clone.querySelector('.sidebar-item-address');
   let website = clone.querySelector('.sidebar-item-website');
   let phone = clone.querySelector('.sidebar-item-phone');
+  let asterik = clone.querySelector('.sidebar-item-asterik');
   // fill elements
   name.textContent = location.name;
   parish.textContent = location.parish + " Parish";
@@ -125,6 +126,12 @@ function fillSidebarItem(location, index) {
   if(location.phone) {
     phone.href = 'tel:' + location.phone;
     phone.textContent = formatPhoneNumber(location.phone);
+  }
+  if(location.asterik) {
+    asterik.textContent = "Must be atleast 16 years old";
+  }
+  else {
+    asterik.textContent = "Must be atleast 18 years old";
   }
   clone.children[0].id = "location " + index;
   clone.children[0].addEventListener("click", () => { 
