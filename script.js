@@ -157,7 +157,7 @@ function scrollToSidebarItem(location) {
     }
   }
   currentMarker = location.marker;
-  location.marker.setIcon('images/current-marker.png');
+  location.marker.setIcon({url: "images/current-marker.png", scaledSize: new google.maps.Size(27, 43) });
 }
 
 function panToLocation(location) {
