@@ -32,6 +32,7 @@ body {
     border: none;
     border-radius: 8px;
     background-color: white;
+    position: absolute;
 }
 #find-me-button:hover {
     background-color: lightyellow;
@@ -52,6 +53,10 @@ body {
         padding: 12px;
         border-radius: 24px;
     }
+    #find-me-button {
+        top: auto !important;
+        bottom: 0 !important;
+    }
 }
 @media (max-width: 799px) {
     #sidebar {
@@ -66,6 +71,10 @@ body {
         padding: 12px;
         border-radius: 12px;
         min-width: 300px;
+    }
+    #find-me-button {
+        top: 0 !important;
+        bottom: auto !important;
     }
 }
 #sidebar {  
