@@ -33,12 +33,7 @@ function initMap() {
   findMeButton.innerHTML = "Find Me";
   findMeButton.id = "find-me-button";
   findMeButton.onclick = centerOnUser;
-  if(window.innerWidth >= 800) {
-    map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(findMeButton);
-  }
-  else {
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(findMeButton);
-  }
+  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(findMeButton);
 
   locations.forEach(location => {
     let marker = new google.maps.Marker({
