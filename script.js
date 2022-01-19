@@ -189,6 +189,7 @@ function formatPhoneNumber(number) {
   }
 }
 let currentPos;
+fillSidebar();
 centerOnUser()
   .then((pos) => {
     let marker = new google.maps.Marker({
@@ -206,5 +207,4 @@ centerOnUser()
   })
   .finally(() => {
     sortLocations(currentPos);
-    fillSidebar();
   })
