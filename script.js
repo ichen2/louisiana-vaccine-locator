@@ -92,6 +92,8 @@ function centerOnUser() {
       };
       map.panTo(pos);
       map.setZoom(13);
+      const findMeButton = document.querySelector("#find-me-button");
+      if(findMeButton) findMeButton.blur();
       resolve(pos);
     })
     .catch(reject);
